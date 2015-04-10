@@ -82,9 +82,34 @@ class ViewController: UIViewController {
     @IBAction func ledOFF(sender: AnyObject) {
         if let wearableService = wearable.wearableService {
             wearableService.sendCommand("#LL0000\n")
+            
             redSlider.setValue(0, animated: true)
             greenSlider.setValue(0, animated: true)
             blueSlider.setValue(0, animated: true)
+        }
+    }
+    
+    // MARK: Melody buttons click
+    @IBAction func playMelody(sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+            case 0:
+                if let wearableService = wearable.wearableService {
+                    wearableService.sendCommand("#PM1234\n")
+                }
+            
+            case 1:
+                if let wearableService = wearable.wearableService {
+                    wearableService.sendCommand("#PM6789\n")
+                }
+            
+            case 2:
+                if let wearableService = wearable.wearableService {
+                    wearableService.sendCommand("#PM4567\n")
+                }
+
+            default:
+                break;
         }
     }
 }
