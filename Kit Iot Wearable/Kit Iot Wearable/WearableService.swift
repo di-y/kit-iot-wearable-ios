@@ -57,7 +57,7 @@ class WearableService: NSObject, CBPeripheralDelegate {
         // Find characteristics
         for service in peripheral.services {
             if service.UUID == ServiceUUID {
-                peripheral.discoverCharacteristics(uuidsForBTService, forService: service as CBService)
+                peripheral.discoverCharacteristics(uuidsForBTService, forService: service as! CBService)
             }
         }
     }
@@ -70,11 +70,31 @@ class WearableService: NSObject, CBPeripheralDelegate {
         
         for characteristic in service.characteristics {
             if characteristic.UUID == CharacteristicUIID {
-                self.peripheralCharacteristic = (characteristic as CBCharacteristic)
-                peripheral.setNotifyValue(true, forCharacteristic: characteristic as CBCharacteristic)
+                self.peripheralCharacteristic = (characteristic as! CBCharacteristic)
+                peripheral.setNotifyValue(true, forCharacteristic: characteristic as! CBCharacteristic)
                 
                 self.sendWearableServiceNotificationWithIsBluetoothConnected(true)
             }
+        }
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError!) {
+        
+        if ((error) != nil) {
+            println("Error changing notification state: %@", error.description)
+        }
+    
+        if (!characteristic.UUID.isEqual(peripheralCharacteristic?.UUID)) {
+            return
+        }
+    
+        if (characteristic.isNotifying) {
+            println("Notification began on %@", characteristic)
+            //[peripheral readValueForCharacteristic:characteristic];
+            
+        } else {
+            println("Notification stopped on %@.  Disconnecting", characteristic)
+            //[self.manager cancelPeripheralConnection:self.peripheral];
         }
     }
     

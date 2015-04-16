@@ -13,7 +13,6 @@
 		527CD4751ACC9DFC004425BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527CD4741ACC9DFC004425BD /* Images.xcassets */; };
 		527CD4781ACC9DFC004425BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527CD4761ACC9DFC004425BD /* LaunchScreen.xib */; };
 		527CD4841ACC9DFD004425BD /* Kit_Iot_WearableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CD4831ACC9DFD004425BD /* Kit_Iot_WearableTests.swift */; };
-		527CD48E1ACC9F94004425BD /* wearable.png in Resources */ = {isa = PBXBuildFile; fileRef = 527CD48D1ACC9F94004425BD /* wearable.png */; };
 		527CD4911ACCA056004425BD /* Wearable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CD48F1ACCA056004425BD /* Wearable.swift */; };
 		527CD4921ACCA056004425BD /* WearableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CD4901ACCA056004425BD /* WearableService.swift */; };
 		5295E6FA1AD4234E0006E073 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5295E6F91AD4234E0006E073 /* Settings.bundle */; };
@@ -40,7 +39,6 @@
 		527CD47D1ACC9DFC004425BD /* Kit Iot WearableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kit Iot WearableTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		527CD4821ACC9DFD004425BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		527CD4831ACC9DFD004425BD /* Kit_Iot_WearableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kit_Iot_WearableTests.swift; sourceTree = "<group>"; };
-		527CD48D1ACC9F94004425BD /* wearable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wearable.png; sourceTree = "<group>"; };
 		527CD48F1ACCA056004425BD /* Wearable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wearable.swift; sourceTree = "<group>"; };
 		527CD4901ACCA056004425BD /* WearableService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WearableService.swift; sourceTree = "<group>"; };
 		5295E6F91AD4234E0006E073 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 			children = (
 				527CD46D1ACC9DFC004425BD /* AppDelegate.swift */,
 				527CD46F1ACC9DFC004425BD /* ViewController.swift */,
-				527CD48D1ACC9F94004425BD /* wearable.png */,
 				527CD4741ACC9DFC004425BD /* Images.xcassets */,
 				527CD4711ACC9DFC004425BD /* Main.storyboard */,
 				527CD4761ACC9DFC004425BD /* LaunchScreen.xib */,
@@ -208,7 +205,6 @@
 				527CD4731ACC9DFC004425BD /* Main.storyboard in Resources */,
 				527CD4781ACC9DFC004425BD /* LaunchScreen.xib in Resources */,
 				5295E6FA1AD4234E0006E073 /* Settings.bundle in Resources */,
-				527CD48E1ACC9F94004425BD /* wearable.png in Resources */,
 				527CD4751ACC9DFC004425BD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

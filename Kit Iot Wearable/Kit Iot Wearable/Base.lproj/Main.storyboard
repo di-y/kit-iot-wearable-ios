@@ -1,76 +1,148 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q9w-pv-OVs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="q9w-pv-OVs">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Buscando Wearable-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="vXZ-lx-hvc" customClass="ViewController" customModule="Kit_Iot_Wearable" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KxZ-VT-KPw"/>
+                        <viewControllerLayoutGuide type="bottom" id="sPU-Wa-fYJ"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" id="ef9-63-YXc">
-                                <rect key="frame" x="20" y="117" width="292" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="minimumTrackTintColor" red="0.84974747470000001" green="0.003207317633" blue="0.097377418899999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="redSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="06x-7Q-VCY"/>
-                                </connections>
-                            </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" id="WSQ-f7-4OG">
-                                <rect key="frame" x="20" y="161" width="292" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="minimumTrackTintColor" red="0.1119805148" green="0.85150331440000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="greenSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="NPo-UA-hVq"/>
-                                </connections>
-                            </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" id="Gpa-jH-n0S">
-                                <rect key="frame" x="20" y="205" width="292" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="blueSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="F3v-no-ZgL"/>
-                                </connections>
-                            </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FvW-IY-tJz">
-                                <rect key="frame" x="22" y="260" width="288" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Apagar o LED">
-                                    <color key="titleColor" red="0.20000000000000001" green="0.28627450980000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="ledOFF:" destination="vXZ-lx-hvc" eventType="touchDown" id="whk-Am-rWo"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="bNc-2P-1SO">
-                                <rect key="frame" x="142" y="10" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bNc-2P-1SO">
+                                <rect key="frame" x="141" y="234" width="37" height="37"/>
                                 <color key="color" red="0.20000000000000001" green="0.28627450980000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" momentary="YES" id="n1s-RD-UXj">
-                                <rect key="frame" x="16" y="340" width="288" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Natalina"/>
-                                    <segment title="Mario Bros"/>
-                                    <segment title="Imperial"/>
-                                </segments>
-                                <color key="tintColor" red="0.20000000000000001" green="0.28627450980000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="playMelody:" destination="vXZ-lx-hvc" eventType="valueChanged" id="yg2-7o-unK"/>
-                                </connections>
-                            </segmentedControl>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gDV-oV-Qjk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Medidas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fem-r4-Qup">
+                                        <rect key="frame" x="0.0" y="20" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.28627450980000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Controle do LED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5F-FM-Twk">
+                                        <rect key="frame" x="0.0" y="190" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.28627450980000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="ef9-63-YXc">
+                                        <rect key="frame" x="0.0" y="220" width="320" height="31"/>
+                                        <color key="minimumTrackTintColor" red="0.84974747470000001" green="0.003207317633" blue="0.097377418899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="thumbTintColor" red="0.84974747470000001" green="0.003207317633" blue="0.097377418899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="redSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="06x-7Q-VCY"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="WSQ-f7-4OG">
+                                        <rect key="frame" x="0.0" y="260" width="320" height="31"/>
+                                        <color key="minimumTrackTintColor" red="0.1119805148" green="0.85150331440000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="thumbTintColor" red="0.1119805148" green="0.85150331440000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="greenSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="NPo-UA-hVq"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Gpa-jH-n0S">
+                                        <rect key="frame" x="0.0" y="300" width="320" height="31"/>
+                                        <color key="minimumTrackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="thumbTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="blueSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="F3v-no-ZgL"/>
+                                        </connections>
+                                    </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvW-IY-tJz">
+                                        <rect key="frame" x="0.0" y="335" width="320" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="8me-ON-Gdp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Apagar o LED">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ledOFF:" destination="vXZ-lx-hvc" eventType="touchDown" id="whk-Am-rWo"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tocar melodias" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhY-ZM-H7h">
+                                        <rect key="frame" x="0.0" y="400" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.28627450980000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1s-RD-UXj">
+                                        <rect key="frame" x="0.0" y="440" width="320" height="29"/>
+                                        <segments>
+                                            <segment title="Natalina"/>
+                                            <segment title="Mario Bros"/>
+                                            <segment title="Imperial"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="playMelody:" destination="vXZ-lx-hvc" eventType="valueChanged" id="yg2-7o-unK"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="n1s-RD-UXj" secondAttribute="bottom" constant="20" id="2nl-yS-F8T"/>
+                                    <constraint firstItem="n1s-RD-UXj" firstAttribute="top" secondItem="LhY-ZM-H7h" secondAttribute="bottom" constant="20" id="6Eu-tT-c3G"/>
+                                    <constraint firstItem="ef9-63-YXc" firstAttribute="leading" secondItem="gDV-oV-Qjk" secondAttribute="leading" constant="10" id="6Wo-uK-xxq"/>
+                                    <constraint firstItem="fem-r4-Qup" firstAttribute="leading" secondItem="FvW-IY-tJz" secondAttribute="leading" id="9og-aE-raP"/>
+                                    <constraint firstAttribute="trailing" secondItem="n1s-RD-UXj" secondAttribute="trailing" constant="20" id="ATf-yg-QA4"/>
+                                    <constraint firstItem="ef9-63-YXc" firstAttribute="top" secondItem="c5F-FM-Twk" secondAttribute="bottom" constant="10" id="Cho-iQ-wAj"/>
+                                    <constraint firstAttribute="trailing" secondItem="ef9-63-YXc" secondAttribute="trailing" constant="10" id="Elg-4X-ZsF"/>
+                                    <constraint firstItem="WSQ-f7-4OG" firstAttribute="top" secondItem="ef9-63-YXc" secondAttribute="bottom" constant="10" id="G3x-0P-ArJ"/>
+                                    <constraint firstItem="n1s-RD-UXj" firstAttribute="leading" secondItem="gDV-oV-Qjk" secondAttribute="leading" constant="20" id="GSW-i8-s9W"/>
+                                    <constraint firstItem="fem-r4-Qup" firstAttribute="leading" secondItem="c5F-FM-Twk" secondAttribute="leading" id="PaH-sv-sVz"/>
+                                    <constraint firstItem="Gpa-jH-n0S" firstAttribute="top" secondItem="WSQ-f7-4OG" secondAttribute="bottom" constant="10" id="YCQ-nY-xKQ"/>
+                                    <constraint firstItem="fem-r4-Qup" firstAttribute="leading" secondItem="n1s-RD-UXj" secondAttribute="leading" id="a0V-nE-kdC"/>
+                                    <constraint firstItem="fem-r4-Qup" firstAttribute="leading" secondItem="LhY-ZM-H7h" secondAttribute="leading" id="bFm-Oa-HmP"/>
+                                    <constraint firstItem="LhY-ZM-H7h" firstAttribute="top" secondItem="FvW-IY-tJz" secondAttribute="bottom" constant="35" id="cNL-AI-vh2"/>
+                                    <constraint firstAttribute="centerX" secondItem="fem-r4-Qup" secondAttribute="centerX" id="cNY-YU-nQE"/>
+                                    <constraint firstItem="WSQ-f7-4OG" firstAttribute="leading" secondItem="gDV-oV-Qjk" secondAttribute="leading" constant="10" id="f39-bU-7s2"/>
+                                    <constraint firstAttribute="centerX" secondItem="ef9-63-YXc" secondAttribute="centerX" id="hmM-fJ-VnQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gpa-jH-n0S" secondAttribute="trailing" constant="10" id="jgt-lH-eUN"/>
+                                    <constraint firstAttribute="trailing" secondItem="WSQ-f7-4OG" secondAttribute="trailing" constant="10" id="m1I-At-iVh"/>
+                                    <constraint firstAttribute="centerX" secondItem="LhY-ZM-H7h" secondAttribute="centerX" id="oco-mG-C6E"/>
+                                    <constraint firstItem="Gpa-jH-n0S" firstAttribute="leading" secondItem="gDV-oV-Qjk" secondAttribute="leading" constant="10" id="pEX-Xb-qe7"/>
+                                    <constraint firstItem="FvW-IY-tJz" firstAttribute="top" secondItem="Gpa-jH-n0S" secondAttribute="bottom" constant="10" id="qA3-gW-FdB"/>
+                                    <constraint firstAttribute="centerX" secondItem="FvW-IY-tJz" secondAttribute="centerX" id="rEe-eu-hDZ"/>
+                                    <constraint firstAttribute="centerX" secondItem="WSQ-f7-4OG" secondAttribute="centerX" id="unb-r1-dim"/>
+                                    <constraint firstAttribute="centerX" secondItem="c5F-FM-Twk" secondAttribute="centerX" id="vy0-oQ-WLM"/>
+                                    <constraint firstAttribute="centerX" secondItem="Gpa-jH-n0S" secondAttribute="centerX" id="w9U-5Y-Nmm"/>
+                                    <constraint firstItem="fem-r4-Qup" firstAttribute="top" secondItem="gDV-oV-Qjk" secondAttribute="top" constant="20" id="wM2-FD-cez"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="bNc-2P-1SO" secondAttribute="centerY" id="OEI-hl-OZg"/>
+                            <constraint firstItem="sPU-Wa-fYJ" firstAttribute="top" secondItem="gDV-oV-Qjk" secondAttribute="bottom" id="b15-g6-ocu"/>
+                            <constraint firstItem="gDV-oV-Qjk" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="bGD-ax-IY6"/>
+                            <constraint firstAttribute="centerX" secondItem="bNc-2P-1SO" secondAttribute="centerX" id="mo9-Wu-Fnz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gDV-oV-Qjk" secondAttribute="trailing" id="tNI-MZ-8UT"/>
+                            <constraint firstItem="gDV-oV-Qjk" firstAttribute="top" secondItem="KxZ-VT-KPw" secondAttribute="bottom" id="zzy-Ib-mGC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Buscando Wearable" id="EUv-nG-NGF"/>
                     <keyCommands/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="blueSlider" destination="Gpa-jH-n0S" id="RcS-dT-I5J"/>
+                        <outlet property="contentView" destination="kh9-bI-dsS" id="Pqn-JY-RQv"/>
                         <outlet property="greenSlider" destination="WSQ-f7-4OG" id="cAn-zD-uur"/>
                         <outlet property="loader" destination="bNc-2P-1SO" id="V3T-Nz-Gfb"/>
                         <outlet property="redSlider" destination="ef9-63-YXc" id="FlG-BC-qHh"/>
@@ -78,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="637" y="318"/>
+            <point key="canvasLocation" x="1194" y="335"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bBz-0s-AjW">
@@ -86,6 +158,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="q9w-pv-OVs" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="SdK-mj-4At">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -101,12 +175,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7e-3B-ODX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="105" y="318"/>
+            <point key="canvasLocation" x="196.875" y="335.91549295774644"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

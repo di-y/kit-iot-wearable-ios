@@ -13,13 +13,12 @@ let wearable = Wearable()
 
 class Wearable: NSObject, CBCentralManagerDelegate {
     
-    private let centralManager: CBCentralManager?
+    private var centralManager: CBCentralManager?
     private var peripheralBLE: CBPeripheral?
     private let defaults = NSUserDefaults.standardUserDefaults()
     
     override init() {
         super.init()
-        
         let centralQueue = dispatch_queue_create("com.wearable", DISPATCH_QUEUE_SERIAL)
         centralManager = CBCentralManager(delegate: self, queue: centralQueue)
     }

@@ -11,11 +11,13 @@ import CoreBluetooth
 
 class ViewController: UIViewController {
 
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     let blueColor = UIColor(red: 51/255, green: 73/255, blue: 96/255, alpha: 1.0)
+    
     
     // MARK: view did load
     override func viewDidLoad() {
@@ -27,11 +29,14 @@ class ViewController: UIViewController {
 
         // Discovery wearable
         wearable
+        
+        // Set timed function execution
+        var timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("getSensorValues"), userInfo: nil, repeats: true)
     }
     
     // MARK: on connection change
     func connectionChanged(notification: NSNotification) {
-        let userInfo = notification.userInfo as [String: Bool]
+        let userInfo = notification.userInfo as! [String: Bool]
         
         dispatch_async(dispatch_get_main_queue(), {
             if let isConnected: Bool = userInfo["isConnected"] {
@@ -39,11 +44,13 @@ class ViewController: UIViewController {
                     self.navigationController!.navigationBar.topItem?.title = "Conectado"
                     self.navigationController!.navigationBar.barTintColor = self.blueColor
                     self.loader.hidden = true
+                    self.contentView.hidden = false
                     
                 } else {
                     self.navigationController!.navigationBar.topItem?.title = "Buscando Wearable"
                     self.navigationController!.navigationBar.barTintColor = UIColor.grayColor()
                     self.loader.hidden = false
+                    self.contentView.hidden = true
                 }
             }
         });
@@ -58,6 +65,7 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     // MARK: Slider change
     @IBAction func redSliderChange(slider: UISlider) {
@@ -78,6 +86,7 @@ class ViewController: UIViewController {
         }
     }
     
+    
     // MARK: Button click
     @IBAction func ledOFF(sender: AnyObject) {
         if let wearableService = wearable.wearableService {
@@ -88,6 +97,17 @@ class ViewController: UIViewController {
             blueSlider.setValue(0, animated: true)
         }
     }
+    
+    
+    // MARK: Get light, temperature, accelerometer values
+    func getSensorValues() {
+        if let wearableService = wearable.wearableService {
+            wearableService.sendCommand("#TE0000\n")
+            wearableService.sendCommand("#LI0000\n")
+            wearableService.sendCommand("#AC0003\n")
+        }
+    }
+    
     
     // MARK: Melody buttons click
     @IBAction func playMelody(sender: UISegmentedControl) {
