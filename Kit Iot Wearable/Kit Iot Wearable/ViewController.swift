@@ -11,7 +11,7 @@ import CoreBluetooth
 
 class ViewController: UIViewController {
 
-    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         wearable
         
         // Set timed function execution
-        var timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("getSensorValues"), userInfo: nil, repeats: true)
+        //var timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("getSensorValues"), userInfo: nil, repeats: true)
     }
     
     // MARK: on connection change

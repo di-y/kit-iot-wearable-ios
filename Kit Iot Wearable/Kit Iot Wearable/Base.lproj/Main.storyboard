@@ -21,7 +21,7 @@
                                 <rect key="frame" x="141" y="234" width="37" height="37"/>
                                 <color key="color" red="0.20000000000000001" green="0.28627450980000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDV-oV-Qjk">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDV-oV-Qjk">
                                 <rect key="frame" x="16" y="0.0" width="288" height="504"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medidas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fem-r4-Qup">
@@ -142,7 +142,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="blueSlider" destination="Gpa-jH-n0S" id="RcS-dT-I5J"/>
-                        <outlet property="contentView" destination="kh9-bI-dsS" id="Pqn-JY-RQv"/>
+                        <outlet property="contentView" destination="gDV-oV-Qjk" id="ZTq-mR-KqD"/>
                         <outlet property="greenSlider" destination="WSQ-f7-4OG" id="cAn-zD-uur"/>
                         <outlet property="loader" destination="bNc-2P-1SO" id="V3T-Nz-Gfb"/>
                         <outlet property="redSlider" destination="ef9-63-YXc" id="FlG-BC-qHh"/>
