@@ -8,8 +8,8 @@
 import Foundation
 import CoreBluetooth
 
-
 let wearable = Wearable()
+
 
 class Wearable: NSObject, CBCentralManagerDelegate {
     
@@ -22,14 +22,19 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         
         let centralQueue = dispatch_queue_create("com.wearable", DISPATCH_QUEUE_SERIAL)
         centralManager = CBCentralManager(delegate: self, queue: centralQueue)
+        
+        // When user update the user default connect to the new wearable name
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "conectWithNewWearable", name: NSUserDefaultsDidChangeNotification, object: nil)
     }
     
+    // MARK: - Start scanning for the wearable
     func startScanning() {
         if let central = centralManager {
             central.scanForPeripheralsWithServices([ServiceUUID], options: nil)
         }
     }
     
+    // MARK: - Discover wearable services
     var wearableService: WearableService? {
         didSet {
             if let service = self.wearableService {
@@ -38,7 +43,13 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         }
     }
     
-    // MARK: - CBCentralManagerDelegate
+    // MARK: - Disconnect and start scanning for the wearable
+    func conectWithNewWearable() {
+        self.clearDevices()
+        self.startScanning()
+    }
+    
+    // MARK: - Discover peripheral
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         
         if ((peripheral == nil) || (peripheral.name == nil) || (peripheral.name == "")) {
@@ -57,6 +68,7 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         }
     }
     
+    // MARK: - Did connect to the peripheral
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
         if (peripheral == nil) {
             return;
@@ -70,6 +82,7 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         central.stopScan()
     }
     
+    // MARK: - Did disconnect from the peripheral
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         
         if (peripheral == nil) {
@@ -77,8 +90,7 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         }
         
         if (peripheral == self.peripheralBLE) {
-            self.wearableService = nil;
-            self.peripheralBLE = nil;
+            self.clearDevices()
         }
         
         self.startScanning()
@@ -91,6 +103,7 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         self.peripheralBLE = nil
     }
     
+    // MARK: - Central Manager update satate
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         switch (central.state) {
             case CBCentralManagerState.PoweredOff:
