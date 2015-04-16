@@ -14,11 +14,11 @@
 		<string>https://github.com/vitorleal/kit-iot-wearable-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Kit Iot Wearable/Kit Iot Wearable.xcodeproj</string>
+	<string>Kit Iot Wearable.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C74C0CE47E98FA3659053C25546DB7CA8132920E</key>
-		<string>../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/vitorleal/kit-iot-wearable-ios.git</string>
