@@ -94,21 +94,19 @@ class ViewController: UIViewController {
     
     
     // MARK: Slider change
-    @IBAction func redSliderChange(slider: UISlider) {
+    @IBAction func sliderChange(slider: UISlider) {
         if let wearableService = wearable.wearableService {
-            wearableService.sendCommand(String(format: "#LR0%.0f\n", slider.value))
-        }
-    }
-    
-    @IBAction func greenSliderChange(slider: UISlider) {
-        if let wearableService = wearable.wearableService {
-            wearableService.sendCommand(String(format: "#LG0%.0f\n", slider.value))
-        }
-    }
-    
-    @IBAction func blueSliderChange(slider: UISlider) {
-        if let wearableService = wearable.wearableService {
-            wearableService.sendCommand(String(format: "#LB0%.0f\n", slider.value))
+            if (slider.isEqual(redSlider)) {
+                wearableService.sendCommand(String(format: "#LR0%.0f\n", slider.value))
+            }
+            
+            if (slider.isEqual(greenSlider)) {
+                wearableService.sendCommand(String(format: "#LG0%.0f\n", slider.value))
+            }
+            
+            if (slider.isEqual(blueSlider)) {
+                wearableService.sendCommand(String(format: "#LB0%.0f\n", slider.value))
+            }
         }
     }
     

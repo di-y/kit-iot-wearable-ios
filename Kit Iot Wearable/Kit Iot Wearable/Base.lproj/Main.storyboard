@@ -36,12 +36,12 @@
                                         <color key="textColor" red="0.20000000000000001" green="0.28627450980000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="ef9-63-YXc">
+                                    <slider opaque="NO" contentMode="scaleToFill" restorationIdentifier="red" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="ef9-63-YXc">
                                         <rect key="frame" x="8" y="230" width="272" height="31"/>
                                         <color key="minimumTrackTintColor" red="0.84974747470000001" green="0.003207317633" blue="0.097377418899999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.84974747470000001" green="0.003207317633" blue="0.097377418899999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="redSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="06x-7Q-VCY"/>
+                                            <action selector="sliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="Sfv-sq-G3o"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="WSQ-f7-4OG">
@@ -49,7 +49,7 @@
                                         <color key="minimumTrackTintColor" red="0.1119805148" green="0.85150331440000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.1119805148" green="0.85150331440000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="greenSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="NPo-UA-hVq"/>
+                                            <action selector="sliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="RS9-2c-Yl7"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Gpa-jH-n0S">
@@ -57,7 +57,7 @@
                                         <color key="minimumTrackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="blueSliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="F3v-no-ZgL"/>
+                                            <action selector="sliderChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="arf-88-rbs"/>
                                         </connections>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvW-IY-tJz">
