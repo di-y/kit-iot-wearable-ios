@@ -12,6 +12,7 @@ import CoreBluetooth
 let ServiceUUID = CBUUID(string: "FFE0")
 let CharacteristicUIID = CBUUID(string: "FFE1")
 let WearableServiceChangedStatusNotification = "WearableServiceChangedStatusNotification"
+let WearableCharacteristicNewValue = "WearableCharacteristicNewValue"
 
 
 class WearableService: NSObject, CBPeripheralDelegate {
@@ -98,6 +99,25 @@ class WearableService: NSObject, CBPeripheralDelegate {
         }
     }
     
+    // MARK:
+    func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        
+        if ((error) != nil) {
+            println("Error changing notification state: %@", error.description)
+        }
+        
+        if (!characteristic.UUID.isEqual(peripheralCharacteristic?.UUID)) {
+            return
+        }
+        
+        var value = NSString(bytes: characteristic.value.bytes, length: characteristic.value.length, encoding: NSUTF8StringEncoding)
+        value = value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
+        if let stringVal = value {
+            self.sendWearableCharacteristicNewValue(value!)
+        }
+    }
+    
     // Send command
     func sendCommand(command: NSString) {
         let str = NSString(string: command)
@@ -111,5 +131,12 @@ class WearableService: NSObject, CBPeripheralDelegate {
         let connectionDetails = ["isConnected": isBluetoothConnected]
 
         NSNotificationCenter.defaultCenter().postNotificationName(WearableServiceChangedStatusNotification, object: self, userInfo: connectionDetails)
+    }
+    
+    // Send characteristic value
+    func sendWearableCharacteristicNewValue(value: NSString) {
+        let stringVal = [NSString(): value]
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(WearableCharacteristicNewValue, object: self, userInfo: stringVal)
     }
 }

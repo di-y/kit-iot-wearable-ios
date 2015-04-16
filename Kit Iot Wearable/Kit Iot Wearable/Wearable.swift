@@ -84,6 +84,7 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         self.startScanning()
     }
     
+    
     // MARK: - Private
     func clearDevices() {
         self.wearableService = nil
