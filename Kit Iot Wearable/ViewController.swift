@@ -11,14 +11,20 @@ import CoreBluetooth
 
 class ViewController: UIViewController {
 
+    // IB Outlets
+    @IBOutlet weak var accelerometrX: UILabel!
+    @IBOutlet weak var accelerometrY: UILabel!
+    @IBOutlet weak var accelerometrZ: UILabel!
+    @IBOutlet weak var luminosityValue: UILabel!
+    @IBOutlet weak var temperatureValue: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
+    
     let blueColor = UIColor(red: 51/255, green: 73/255, blue: 96/255, alpha: 1.0)
     var timer: NSTimer?
-    
     
     // MARK: - View did load
     override func viewDidLoad() {
@@ -41,33 +47,35 @@ class ViewController: UIViewController {
         
         let userInfo = notification.userInfo as! Dictionary<String, NSString>
         let value = userInfo["value"]!
+        let val = value.substringFromIndex(3).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let sensor = value.substringWithRange(NSMakeRange(0, 3))
         
-        println(value)
-        
-        switch value {
-            case value.hasPrefix("#TE"):
-                println(value.substringFromIndex(3))
-                break
+        dispatch_async(dispatch_get_main_queue()) {
+            switch sensor {
+                case "#TE":
+                    self.temperatureValue.text = "\(val)º"
+                    break
             
-            case value.hasPrefix("#LI"):
-                println(value.substringFromIndex(3))
-                break
+                case "#LI":
+                    self.luminosityValue.text = val
+                    break
             
-            case value.hasPrefix("#AX"):
-                println(value.substringFromIndex(3))
-                break
+                case "#AX":
+                    self.accelerometrX.text = val
+                    break
             
-            case value.hasPrefix("#AY"):
-                println(value.substringFromIndex(3))
-                break
+                case "#AY":
+                    self.accelerometrY.text = val
+                    break
             
-            case value.hasPrefix("#AZ"):
-                println(value.substringFromIndex(3))
-                break
+                case "#AZ":
+                    self.accelerometrZ.text = val
+                    break
             
-            default:
-                println(value.substringFromIndex(3))
-                break
+                default:
+
+                    break
+            }
         }
     }
     
@@ -121,7 +129,7 @@ class ViewController: UIViewController {
         self.getSensorValues()
         
         // Start timer
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("getSensorValues"), userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("getSensorValues"), userInfo: nil, repeats: true)
     }
     
     
