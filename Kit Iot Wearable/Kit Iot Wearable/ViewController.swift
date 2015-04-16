@@ -20,26 +20,66 @@ class ViewController: UIViewController {
     var timer = NSTimer()
     
     
-    // MARK: view did load
+    // MARK: - View did load
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Notification center
+        // Notification center observers
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("connectionChanged:"),
-            name: WearableServiceChangedStatusNotification, object: nil)
-
-        // Discovery wearable
-        wearable
+            name: WearableServiceStatusNotification, object: nil)
         
-        // Set timed function execution
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("characteristicNewValue:"),
+            name: WearableCharacteristicNewValue, object: nil)
+        
+        //Wearable instance
+        wearable
     }
     
-    // MARK: on connection change
+    
+    // MARK: - On characteristic new value update interface
+    func characteristicNewValue(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo as! Dictionary<String, NSString>
+        let value = userInfo["value"]!
+        
+        println(value)
+        
+        switch value {
+            case value.hasPrefix("#TE"):
+                println(value.substringFromIndex(3))
+                break
+            
+            case value.hasPrefix("#LI"):
+                println(value.substringFromIndex(3))
+                break
+            
+            case value.hasPrefix("#AX"):
+                println(value.substringFromIndex(3))
+                break
+            
+            case value.hasPrefix("#AY"):
+                println(value.substringFromIndex(3))
+                break
+            
+            case value.hasPrefix("#AZ"):
+                println(value.substringFromIndex(3))
+                break
+            
+            default:
+                println(value.substringFromIndex(3))
+                break
+        }
+    }
+    
+    
+    // MARK: - On connection change
     func connectionChanged(notification: NSNotification) {
         let userInfo = notification.userInfo as! [String: Bool]
         
         dispatch_async(dispatch_get_main_queue(), {
+            
             if let isConnected: Bool = userInfo["isConnected"] {
+                
                 if isConnected {
                     self.wearableConnected()
                     
@@ -50,7 +90,8 @@ class ViewController: UIViewController {
         });
     }
     
-    // MARK: On wearable disconnection
+    
+    // MARK: - On wearable disconnection
     func wearableDisconnected() {
         // Change the title
         self.navigationController!.navigationBar.topItem?.title = "Buscando Wearable"
@@ -64,7 +105,8 @@ class ViewController: UIViewController {
         self.timer.invalidate()
     }
 
-    // MARK: On wearable connection
+    
+    // MARK: - On wearable connection
     func wearableConnected() {
         //Change the title
         self.navigationController!.navigationBar.topItem?.title = "Conectado"
@@ -82,39 +124,43 @@ class ViewController: UIViewController {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("getSensorValues"), userInfo: nil, repeats: true)
     }
     
-    // MARK: deinit and memory warning
+    
+    // MARK: - Deinit and memory warning
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: WearableServiceChangedStatusNotification, object: nil)
+            name: WearableServiceStatusNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: WearableCharacteristicNewValue, object: nil)
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     
-    // MARK: Slider change
+    // MARK: - Slider change
     @IBAction func sliderChange(slider: UISlider) {
         if let wearableService = wearable.wearableService {
             if (slider.isEqual(redSlider)) {
-                wearableService.sendCommand(String(format: "#LR0%.0f\n", slider.value))
+                wearableService.sendCommand(String(format: "#LR0%.0f\n\r", slider.value))
             }
             
             if (slider.isEqual(greenSlider)) {
-                wearableService.sendCommand(String(format: "#LG0%.0f\n", slider.value))
+                wearableService.sendCommand(String(format: "#LG0%.0f\n\r", slider.value))
             }
             
             if (slider.isEqual(blueSlider)) {
-                wearableService.sendCommand(String(format: "#LB0%.0f\n", slider.value))
+                wearableService.sendCommand(String(format: "#LB0%.0f\n\r", slider.value))
             }
         }
     }
     
     
-    // MARK: Button click
+    // MARK: - Button click
     @IBAction func ledOFF(sender: AnyObject) {
         if let wearableService = wearable.wearableService {
-            wearableService.sendCommand("#LL0000\n")
+            wearableService.sendCommand("#LL0000\n\r")
             
             redSlider.setValue(0, animated: true)
             greenSlider.setValue(0, animated: true)
@@ -123,35 +169,33 @@ class ViewController: UIViewController {
     }
     
     
-    // MARK: Get light, temperature, accelerometer values
+    // MARK: - Get {light,temperature,accelerometer} value
     func getSensorValues() {
-        println("timer on ;)")
-        
         if let wearableService = wearable.wearableService {
-            wearableService.sendCommand("#TE0000\n")
-            wearableService.sendCommand("#LI0000\n")
-            wearableService.sendCommand("#AC0003\n")
+            wearableService.sendCommand("#TE0000\n\r")
+             wearableService.sendCommand("#LI0000\n\r")
+            wearableService.sendCommand("#AC0003\n\r")
         }
     }
     
     
-    // MARK: Melody buttons click
+    // MARK: - Melody buttons click
     @IBAction func playMelody(sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
             case 0:
                 if let wearableService = wearable.wearableService {
-                    wearableService.sendCommand("#PM1234\n")
+                    wearableService.sendCommand("#PM1234\n\r")
                 }
             
             case 1:
                 if let wearableService = wearable.wearableService {
-                    wearableService.sendCommand("#PM6789\n")
+                    wearableService.sendCommand("#PM6789\n\r")
                 }
             
             case 2:
                 if let wearableService = wearable.wearableService {
-                    wearableService.sendCommand("#PM4567\n")
+                    wearableService.sendCommand("#PM4567\n\r")
                 }
 
             default:

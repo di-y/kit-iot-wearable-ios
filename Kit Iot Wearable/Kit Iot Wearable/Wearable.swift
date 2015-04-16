@@ -8,6 +8,7 @@
 import Foundation
 import CoreBluetooth
 
+// Create new instance of the wearable class
 let wearable = Wearable()
 
 
@@ -27,12 +28,14 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "conectWithNewWearable", name: NSUserDefaultsDidChangeNotification, object: nil)
     }
     
+    
     // MARK: - Start scanning for the wearable
     func startScanning() {
         if let central = centralManager {
             central.scanForPeripheralsWithServices([ServiceUUID], options: nil)
         }
     }
+    
     
     // MARK: - Discover wearable services
     var wearableService: WearableService? {
@@ -43,11 +46,13 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         }
     }
     
+    
     // MARK: - Disconnect and start scanning for the wearable
     func conectWithNewWearable() {
         self.clearDevices()
         self.startScanning()
     }
+    
     
     // MARK: - Discover peripheral
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
@@ -56,6 +61,7 @@ class Wearable: NSObject, CBCentralManagerDelegate {
             return
         }
         
+        // If is the write peripheral connect using the settings bundle wearable name
         if ((self.peripheralBLE == nil) || (self.peripheralBLE?.state == CBPeripheralState.Disconnected)) {
             var wearableName = defaults.stringForKey("wearableName")
             
@@ -68,19 +74,23 @@ class Wearable: NSObject, CBCentralManagerDelegate {
         }
     }
     
+    
     // MARK: - Did connect to the peripheral
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
+        
         if (peripheral == nil) {
             return;
         }
         
-        // Create new service class
+        // Create new instance of the service class
         if (peripheral == self.peripheralBLE) {
             self.wearableService = WearableService(initWithPeripheral: peripheral)
         }
         
+        // Stop scan for the wearable
         central.stopScan()
     }
+    
     
     // MARK: - Did disconnect from the peripheral
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
@@ -89,19 +99,22 @@ class Wearable: NSObject, CBCentralManagerDelegate {
             return;
         }
         
+        //  Clear service and peripheral
         if (peripheral == self.peripheralBLE) {
             self.clearDevices()
         }
         
+        // Start scanning for the wearables
         self.startScanning()
     }
     
     
-    // MARK: - Private
+    // MARK: - Private - clear service and peripheral
     func clearDevices() {
         self.wearableService = nil
         self.peripheralBLE = nil
     }
+    
     
     // MARK: - Central Manager update satate
     func centralManagerDidUpdateState(central: CBCentralManager!) {

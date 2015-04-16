@@ -11,7 +11,7 @@ import CoreBluetooth
 
 let ServiceUUID = CBUUID(string: "FFE0")
 let CharacteristicUIID = CBUUID(string: "FFE1")
-let WearableServiceChangedStatusNotification = "WearableServiceChangedStatusNotification"
+let WearableServiceStatusNotification = "WearableServiceChangedStatusNotification"
 let WearableCharacteristicNewValue = "WearableCharacteristicNewValue"
 
 
@@ -30,20 +30,24 @@ class WearableService: NSObject, CBPeripheralDelegate {
         self.reset()
     }
     
-    // Start discovering services
+    
+    // MARK: - Start discovering services
     func startDiscoveringServices() {
         self.peripheral?.discoverServices([ServiceUUID])
     }
     
-    // Reset
+    
+    // MARK: - Reset
     func reset() {
         if peripheral != nil {
             peripheral = nil
         }
-        self.sendWearableServiceNotificationWithIsBluetoothConnected(false)
+        
+        self.sendWearableServiceStatusNotification(false)
     }
     
-    // Look for bluetooth with the service FFEO
+    
+    // MARK: - Look for bluetooth with the service FFEO
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
         let uuidsForBTService: [CBUUID] = [CharacteristicUIID]
         
@@ -63,7 +67,8 @@ class WearableService: NSObject, CBPeripheralDelegate {
         }
     }
     
-    // Look for the bluetooth characteristics
+    
+    // MARK: - Look for the bluetooth characteristics
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
         if (peripheral != self.peripheral || error != nil) {
             return
@@ -74,32 +79,13 @@ class WearableService: NSObject, CBPeripheralDelegate {
                 self.peripheralCharacteristic = (characteristic as! CBCharacteristic)
                 peripheral.setNotifyValue(true, forCharacteristic: characteristic as! CBCharacteristic)
                 
-                self.sendWearableServiceNotificationWithIsBluetoothConnected(true)
+                self.sendWearableServiceStatusNotification(true)
             }
         }
     }
     
-    func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError!) {
-        
-        if ((error) != nil) {
-            println("Error changing notification state: %@", error.description)
-        }
     
-        if (!characteristic.UUID.isEqual(peripheralCharacteristic?.UUID)) {
-            return
-        }
-    
-        if (characteristic.isNotifying) {
-            println("Notification began on %@", characteristic)
-            //[peripheral readValueForCharacteristic:characteristic];
-            
-        } else {
-            println("Notification stopped on %@.  Disconnecting", characteristic)
-            //[self.manager cancelPeripheralConnection:self.peripheral];
-        }
-    }
-    
-    // MARK:
+    // MARK: - Did update the characteristic value
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
         
         if ((error) != nil) {
@@ -113,12 +99,14 @@ class WearableService: NSObject, CBPeripheralDelegate {
         var value = NSString(bytes: characteristic.value.bytes, length: characteristic.value.length, encoding: NSUTF8StringEncoding)
         value = value?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        if let stringVal = value {
-            self.sendWearableCharacteristicNewValue(value!)
+
+        if let optionalValue = value {
+            self.sendWearableCharacteristicNewValue(optionalValue)
         }
     }
     
-    // Send command
+    
+    // MARK: - Send command
     func sendCommand(command: NSString) {
         let str = NSString(string: command)
         let data = NSData(bytes: str.UTF8String, length: str.length)
@@ -126,17 +114,19 @@ class WearableService: NSObject, CBPeripheralDelegate {
         self.peripheral?.writeValue(data, forCharacteristic: self.peripheralCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
     }
     
-    // Send wearable connected notification
-    func sendWearableServiceNotificationWithIsBluetoothConnected(isBluetoothConnected: Bool) {
-        let connectionDetails = ["isConnected": isBluetoothConnected]
+    
+    // MARK: - Send wearable connected notification
+    func sendWearableServiceStatusNotification(isBluetoothConnected: Bool) {
+        let userInfo = ["isConnected": isBluetoothConnected]
 
-        NSNotificationCenter.defaultCenter().postNotificationName(WearableServiceChangedStatusNotification, object: self, userInfo: connectionDetails)
+        NSNotificationCenter.defaultCenter().postNotificationName(WearableServiceStatusNotification, object: self, userInfo: userInfo)
     }
     
-    // Send characteristic value
+    
+    // MARK: - Send characteristic value
     func sendWearableCharacteristicNewValue(value: NSString) {
-        let stringVal = [NSString(): value]
+        let userInfo = ["value": value]
         
-        NSNotificationCenter.defaultCenter().postNotificationName(WearableCharacteristicNewValue, object: self, userInfo: stringVal)
+        NSNotificationCenter.defaultCenter().postNotificationName(WearableCharacteristicNewValue, object: self, userInfo: userInfo)
     }
 }
