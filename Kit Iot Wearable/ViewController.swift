@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     let blueColor = UIColor(red: 51/255, green: 73/255, blue: 96/255, alpha: 1.0)
-    var timer = NSTimer()
+    var timer: NSTimer?
     
     
     // MARK: - View did load
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         // Show content view
         self.contentView.hidden = true
         // Cancel timer
-        self.timer.invalidate()
+        self.timer!.invalidate()
     }
 
     
