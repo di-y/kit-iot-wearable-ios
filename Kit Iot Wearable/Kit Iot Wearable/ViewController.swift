@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     let blueColor = UIColor(red: 51/255, green: 73/255, blue: 96/255, alpha: 1.0)
+    var timer = NSTimer()
     
     
     // MARK: view did load
@@ -31,7 +32,6 @@ class ViewController: UIViewController {
         wearable
         
         // Set timed function execution
-        //var timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("getSensorValues"), userInfo: nil, repeats: true)
     }
     
     // MARK: on connection change
@@ -41,19 +41,45 @@ class ViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue(), {
             if let isConnected: Bool = userInfo["isConnected"] {
                 if isConnected {
-                    self.navigationController!.navigationBar.topItem?.title = "Conectado"
-                    self.navigationController!.navigationBar.barTintColor = self.blueColor
-                    self.loader.hidden = true
-                    self.contentView.hidden = false
+                    self.wearableConnected()
                     
                 } else {
-                    self.navigationController!.navigationBar.topItem?.title = "Buscando Wearable"
-                    self.navigationController!.navigationBar.barTintColor = UIColor.grayColor()
-                    self.loader.hidden = false
-                    self.contentView.hidden = true
+                    self.wearableDisconnected()
                 }
             }
         });
+    }
+    
+    // MARK: On wearable disconnection
+    func wearableDisconnected() {
+        // Change the title
+        self.navigationController!.navigationBar.topItem?.title = "Buscando Wearable"
+        // Change naviagation color
+        self.navigationController!.navigationBar.barTintColor = UIColor.grayColor()
+        // Show loader
+        self.loader.hidden = false
+        // Show content view
+        self.contentView.hidden = true
+        // Cancel timer
+        self.timer.invalidate()
+    }
+
+    // MARK: On wearable connection
+    func wearableConnected() {
+        //Change the title
+        self.navigationController!.navigationBar.topItem?.title = "Conectado"
+        //Change naviagation color
+        self.navigationController!.navigationBar.barTintColor = self.blueColor
+        // Hide loader
+        self.loader.hidden = true
+        // Show content view
+        self.contentView.hidden = false
+        
+        // Get the sensor values
+        self.getSensorValues()
+        
+        // Start timer
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("getSensorValues"), userInfo: nil, repeats: true)
     }
     
     // MARK: deinit and memory warning
@@ -101,6 +127,8 @@ class ViewController: UIViewController {
     
     // MARK: Get light, temperature, accelerometer values
     func getSensorValues() {
+        println("timer on ;)")
+        
         if let wearableService = wearable.wearableService {
             wearableService.sendCommand("#TE0000\n")
             wearableService.sendCommand("#LI0000\n")
