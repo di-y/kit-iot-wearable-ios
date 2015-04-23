@@ -5,15 +5,15 @@ Aplicativo em [Swift](https://developer.apple.com/swift/) para controlar o [Kit 
 
 ## Screenshots
 
-![Screenshot 1](https://github.com/telefonicadigital/raw/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-1.jpg)
+![Screenshot 1](https://raw.githubusercontent.com/kit-iot-wearable-ios/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-1.jpg)
 
-![Screenshot 2](https://github.com/telefonicadigital/raw/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-2.jpg)
+![Screenshot 2](https://raw.githubusercontent.com/kit-iot-wearable-ios/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-2.jpg)
 
-![Screenshot 3](https://github.com/telefonicadigital/raw/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-3.jpg)
+![Screenshot 3](https://raw.githubusercontent.com/kit-iot-wearable-ios/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-3.jpg)
 
-![Screenshot 4](https://github.com/telefonicadigital/raw/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-4.jpg)
+![Screenshot 4](https://raw.githubusercontent.com/kit-iot-wearable-ios/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-4.jpg)
 
-![Screenshot 5](https://github.com/telefonicadigital/raw/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-5.jpg)
+![Screenshot 5](https://raw.githubusercontent.com/kit-iot-wearable-ios/master/Kit Iot Wearable/Images.xcassets/screenshot-1.imageset/screenshot-5.jpg)
 
 
 ## Autor
